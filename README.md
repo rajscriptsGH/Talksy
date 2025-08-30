@@ -26,11 +26,14 @@ Talksy is a real-time chat and video app for fast and simple communication.
 
 Install dependencies
 
-bash
-Copy code
+```bash
 npm install
+```
+
 Run the development server
 
-bash
-Copy code
+```bash
 npm run dev
+```
+
+⭐ If you like this project, give it a star to support the development!
