@@ -1,4 +1,5 @@
 import User from "../models/User.js";
+import jwt from 'jsonwebtoken'
 
 export async function signup(req, res) {
     const { fullName, email, password } = req.body
@@ -39,12 +40,29 @@ export async function signup(req, res) {
             profilePic: randomProfile,
         });
 
+        const token = jwt.sign({
+            userId: newUser._id
+        }, process.env.JWT_SECRET_KEY, {
+            expiresIn: "7d"
+        })
 
+        res.cookie("jwt", token, {
+            maxAge: 7 * 24 * 60 * 60 * 1000,  //in ms
+            httpOnly: true,  //protect from attack
+            sameSite: "strict",
+            secure: process.env.NODE_ENV === 'production'
+        })
 
-
+        res.status(201).json({
+            success: true,
+            user: newUser
+        })
 
     } catch (error) {
-
+        console.log("error in signup", error);
+        res.status(500), json({
+            message: "Signup server error"
+        });
     }
 }
 export function login(req, res) {
