@@ -65,6 +65,8 @@ export async function signup(req, res) {
         });
     }
 }
+
+
 export function login(req, res) {
     res.send("login Route")
 }
