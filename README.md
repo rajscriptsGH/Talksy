@@ -16,6 +16,10 @@ Talksy is a real-time chat and video app for fast and simple communication.
 - WebSocket / WebRTC  
 - MongoDB  
 
+## Site for Avatar
+
+<https://avatar-placeholder.iran.liara.run/>
+
 ## Getting Started
 
 1. Clone the repository  
