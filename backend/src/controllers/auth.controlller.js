@@ -86,7 +86,7 @@ export async function login(req, res) {
             })
         }
 
-        const isPasswordCorrect = await user.checkPasswordCorrect(password)
+        const isPasswordCorrect = await user.checkPassword(password)
         if (!isPasswordCorrect) {
             return res.status(401).json({
                 success: false,
@@ -95,7 +95,7 @@ export async function login(req, res) {
         }
 
         const token = jwt.sign({
-            userId: newUser._id
+            userId: user._id
         }, process.env.JWT_SECRET_KEY, {
             expiresIn: "7d"
         })
@@ -107,7 +107,7 @@ export async function login(req, res) {
             secure: process.env.NODE_ENV === 'production'
         })
 
-        res.status(201).json({
+        res.status(200).json({
             success: true,
             user
         })
@@ -115,18 +115,17 @@ export async function login(req, res) {
 
     } catch (error) {
         console.log("error in login", error);
-        res.status(500), json({
+        res.status(500).json({
             message: "Login server error"
         });
     }
 }
 
 
-
-
-
-
-
 export function logout(req, res) {
-    res.send("logout Route")
+    res.clearCookie("jwt");
+    res.status(201).json({
+        success: true,
+        message: "Logout successfully"
+    })
 }
