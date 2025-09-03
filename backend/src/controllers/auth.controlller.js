@@ -165,6 +165,7 @@ export async function onboard(req, res) {
 
         const updateUser = await User.findByIdAndUpdate(userId, {
             ...req.body,
+            onBoarded: true
         }, { new: true });
         if (!updateUser) {
             return res.status(400).json({
@@ -178,11 +179,19 @@ export async function onboard(req, res) {
         })
 
         //update stream user
-        await upsertSteamUser({
-            id: updateUser._id.toString(),
-            name: updateUser.fullName,
-            image: updateUser.profilePic || "",
-        })
+        try {
+            await upsertSteamUser({
+                id: updateUser._id.toString(),
+                name: updateUser.fullName,
+                image: updateUser.profilePic || "",
+                bio: updateUser.bio || "",
+                nativeLanguage: updateUser.nativeLanguage || "",
+                learningLanguage: updateUser.learningLanguage || "",
+                location: updateUser.location || "",
+            })
+        } catch (error) {
+            console.log("error in updating stream user", error);
+        }
 
     } catch (error) {
         console.log("error in onboard", error);
