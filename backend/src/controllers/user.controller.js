@@ -1,3 +1,4 @@
+import User from "../models/User.js";
 
 
 export async function getReccomendedUsers(req, res) {
@@ -13,10 +14,7 @@ export async function getReccomendedUsers(req, res) {
                 { isOnBorded: true },
             ]
         })
-        res.status(200).json({
-            success: true,
-            users: reccomendedUsers
-        });
+        res.status(200).json({ reccomendedUsers });
     } catch (error) {
         console.log("error in getReccomendedUsers", error);
         res.status(500).json({
@@ -27,4 +25,16 @@ export async function getReccomendedUsers(req, res) {
 }
 
 
-export async function getMyFriends(req, res) { }
+export async function getMyFriends(req, res) {
+    try {
+        const user = await User.findById(req.user.id)
+            .select("friends")
+            .populate("friends", "fullName profilePic nativeLanguage learningLanguage");
+
+
+        res.status(200).json({friends: user.friends })
+    } catch (error) {
+        console.log("Error in getMyFriends controller", error);
+        res.status(500).json({ message: "Server error" })
+    }
+}
