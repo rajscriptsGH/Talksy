@@ -12,6 +12,9 @@ router.post("/logout", logout)
 
 router.post("/onboarding", middlewareAuthRoute, onboard)
 
+//forget possword route
+//email verification route
+
 router.get("/me", middlewareAuthRoute, (req, res) => {
     res.status(200).json({
         success: true,
