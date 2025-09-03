@@ -12,6 +12,12 @@ router.post("/logout", logout)
 
 router.post("/onboarding", middlewareAuthRoute, onboard)
 
+router.get("/me", middlewareAuthRoute, (req, res) => {
+    res.status(200).json({
+        success: true,
+        user: req.user
+    })
+})
 
 
 
