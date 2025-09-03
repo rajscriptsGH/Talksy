@@ -87,3 +87,38 @@ export async function sendFriendRequest() {
         res.status(500).json({ message: "Server error" })
     }
 }
+
+export async function acceptFriendRequest() {
+    try {
+        const { id: requestId } = req.params;
+
+        const friendRequest = await FriendRequest.findById(requestId)
+
+        if (!friendRequest) {
+            return res.status(404).json({ message: "Request not found" })
+        }
+
+        if (friendRequest.recipient.toString() !== req.user.id) {
+            return res.status(403).json({ message: "U can't accepts this request" })
+        }
+
+        friendRequest.status = "accepted"
+        await friendRequest.save();
+
+
+        //update each other friend list
+        await User.findByIdAndUpdate(friendRequest.sender, {
+            $addToSet: { friends: friendRequest.recipient },
+        })
+
+        await User.findByIdAndUpdate(friendRequest.recipient, {
+            $addToSet: { friends: friendRequest.sender },
+        })
+
+        return res.status(201).json({ message: "Request accepted" })
+
+    } catch (error) {
+        console.log("Error in accepting friend request", error);
+        res.status(500).json({ message: "Server error" })
+    }
+}
