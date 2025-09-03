@@ -3,6 +3,8 @@ import 'dotenv/config'
 import cookieParser from 'cookie-parser'
 
 import authRouters from "./routes/auth.route.js"
+import userRouters from "./routes/user.route.js"
+
 import { connectDB } from './lib/db.js'
 
 const app = express()
@@ -13,6 +15,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use('/api/auth', authRouters)
+app.use('/api/users', userRouters)
 
 
 
