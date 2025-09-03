@@ -1,3 +1,4 @@
+import FriendRequest from "../models/FriendRequest.js";
 import User from "../models/User.js";
 
 
@@ -32,10 +33,57 @@ export async function getMyFriends(req, res) {
             .populate("friends", "fullName profilePic nativeLanguage learningLanguage");
 
 
-        res.status(200).json({friends: user.friends })
+        res.status(200).json({ friends: user.friends })
     } catch (error) {
         console.log("Error in getMyFriends controller", error);
         res.status(500).json({ message: "Server error" })
     }
 }
 
+
+export async function sendFriendRequest() {
+    try {
+        const myId = req.user.id;
+        const { id: recipientId } = req.params;
+
+        //prevent sending req to urself
+        if (myId === recipientId) {
+            return res.status(400).json({ message: "U can't send request to yourself" })
+        }
+
+        const recipient = await User.findById(recipientId)
+
+        if (!recipient) {
+            return res.status(400).json({ message: "Recipient not found" })
+        }
+
+        //check if u both are already friend
+        if (recipient.friends.includes(myId)) {
+            return res.status(400).json({ message: "U are already friends" })
+        }
+
+        //check if request already there
+        const existingReq = await FriendRequest.findOne({
+            $or: [
+                { sender: myId, recipient: recipientId },
+                { sender: recipientId, recipient: myId }
+            ]
+        });
+
+        if (existingReq) {
+            return res.status(400).json({ message: "A request already exists between u both" })
+        }
+
+        //create a new request
+        const friendRequest = await FriendRequest.create({
+            sender: myId,
+            recipient: recipientId
+        })
+
+        res.status(201).json({ friendRequest })
+
+    } catch (error) {
+        console.log("Error in sending friend request", error);
+        res.status(500).json({ message: "Server error" })
+    }
+}

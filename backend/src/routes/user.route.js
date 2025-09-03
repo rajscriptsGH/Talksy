@@ -1,6 +1,6 @@
 import express from 'express'
 import { middlewareAuthRoute } from '../middleware/auth.middleware.js'
-import { getReccomendedUsers, getMyFriends } from '../controllers/user.controller.js'
+import { getReccomendedUsers, getMyFriends, sendFriendRequest } from '../controllers/user.controller.js'
 
 const router = express.Router()
 
