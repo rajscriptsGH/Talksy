@@ -9,4 +9,9 @@ router.use(middlewareAuthRoute)
 router.get("/", getReccomendedUsers)
 router.get("/friends", getMyFriends)
 
+
+router.get("/friend-request/:id", sendFriendRequest)
+
+
+
 export default router;
