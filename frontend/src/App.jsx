@@ -1,17 +1,26 @@
+import { Route, Routes } from 'react-router'
 
+import HomePage from './components/HomePage.jsx'
+import Signup from './components/Signup.jsx'
+import Login from './components/Login.jsx'
+import ChatPage from './components/ChatPage.jsx'
+import Notification from './components/Notification.jsx'
+import OnBoarding from './components/OnBoarding.jsx'
+import CallPage from './components/CallPage.jsx'
 
 function App() {
 
   return (
-    <div className="flex flex-col gap-3 items-center justify-center h-screen w-screen">
-      <button className="btn btn-soft">Default</button>
-      <button className="btn btn-soft btn-primary">Primary</button>
-      <button className="btn btn-soft btn-secondary">Secondary</button>
-      <button className="btn btn-soft btn-accent">Accent</button>
-      <button className="btn btn-soft btn-info">Info</button>
-      <button className="btn btn-soft btn-success">Success</button>
-      <button className="btn btn-soft btn-warning">Warning</button>
-      <button className="btn btn-soft btn-error">Error</button>
+    <div className="h-screen">
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/chatpage' element={<ChatPage />} />
+        <Route path='/notification' element={<Notification />} />
+        <Route path='/onboarding' element={<OnBoarding />} />
+        <Route path='/callpage' element={<CallPage />} />
+      </Routes>
     </div>
   )
 }
