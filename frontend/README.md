@@ -62,35 +62,23 @@ Build for production:
 npm run build
 ```
 
-🔌 API Integration
+## Real-Time Communication
 
-This frontend communicates with a backend server (Node.js + Express + WebSocket).
-Update src/services/api.js with your backend URL:
+- WebSockets for messaging & signaling
 
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true,
-});
-
-export default api;
-
-⚡ Real-Time Communication
-
-WebSockets for messaging & signaling
-
-WebRTC for peer-to-peer video & audio streams
+- WebRTC for peer-to-peer video & audio streams
 
 Example: when a user clicks "Call", the frontend:
 
-Sends a WebSocket signal to the backend
+**1**.Sends a WebSocket signal to the backend
 
-Backend relays offer/answer/ICE candidates
+**2**.Backend relays offer/answer/ICE candidates
 
-WebRTC establishes a direct peer connection
+**3**.WebRTC establishes a direct peer connection
 
-📦 Core Dependencies
+## Core Dependencies
+
+```json
 "dependencies": {
   "@tanstack/react-query": "^5.x",
   "axios": "^1.x",
@@ -100,23 +88,24 @@ WebRTC establishes a direct peer connection
   "react-router-dom": "^6.x",
   "tailwindcss": "^3.x"
 }
+```
 
-🖼️ Screenshots (Optional)
+## Screenshots
 
-Add some UI screenshots here
+Comming soon...
 
-🤝 Contribution
+## 🤝 Contribution
 
-Fork the repo
+1.Fork the repo
 
-Create a feature branch (git checkout -b feature-name)
+2.Create a feature branch (git checkout -b feature-name)
 
-Commit changes (git commit -m "Added feature X")
+3.Commit changes (git commit -m "Added feature X")
 
-Push branch (git push origin feature-name)
+4.Push branch (git push origin feature-name)
 
-Create a Pull Request
+5.Create a Pull Request
 
-📜 License
+## License
 
 This project is licensed under the MIT License.
