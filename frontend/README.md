@@ -21,21 +21,21 @@ A React-based frontend for a real-time video chat and messaging app, inspired by
 ## Project Structure
 
 frontend/
-│── public/                 # Static assets (images, icons, etc.)
+│── public/ # Static assets (images, icons, etc.)
 │── src/
-│   ├── components/         # Reusable UI components
-│   ├── constant/           # Constants (API endpoints, config)
-│   ├── hooks/              # Custom hooks (React Query, auth, etc.)
-│   ├── lib/                # Utilities & helper functions
-│   ├── pages/              # Pages for routing (Home, Chat, Call, etc.)
-│   ├── store/              # Global state management
-│   ├── App.jsx             # Main app with routes
-│   ├── main.jsx            # Entry point (ReactDOM + Providers)
-│   ├── index.css           # Tailwind & global styles
-│── index.html              # Root HTML
-│── package.json            # Dependencies & scripts
-│── vite.config.js          # Vite configuration
-│── README.md               # Project documentation
+│ ├── components/ # Reusable UI components
+│ ├── constant/ # Constants (API endpoints, config)
+│ ├── hooks/ # Custom hooks (React Query, auth, etc.)
+│ ├── lib/ # Utilities & helper functions
+│ ├── pages/ # Pages for routing (Home, Chat, Call, etc.)
+│ ├── store/ # Global state management
+│ ├── App.jsx # Main app with routes
+│ ├── main.jsx # Entry point (ReactDOM + Providers)
+│ ├── index.css # Tailwind & global styles
+│── index.html # Root HTML
+│── package.json # Dependencies & scripts
+│── vite.config.js # Vite configuration
+│── README.md # Project documentation
 
 ## Installation & Setup
 
