@@ -20,6 +20,7 @@ A React-based frontend for a real-time video chat and messaging app, inspired by
 
 ## Project Structure
 
+```md
 frontend/
 │── public/ # Static assets (images, icons, etc.)
 │── src/
@@ -36,6 +37,7 @@ frontend/
 │── package.json # Dependencies & scripts
 │── vite.config.js # Vite configuration
 │── README.md # Project documentation
+```
 
 ## Installation & Setup
 
