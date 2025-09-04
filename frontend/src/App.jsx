@@ -13,7 +13,6 @@ function App() {
 
   return (
     <div className="h-screen">
-      <button onClick={() => toast.success("Clicked")}>Click Me!</button>
 
       <Routes>
         <Route path='/' element={<HomePage />} />
@@ -24,7 +23,7 @@ function App() {
         <Route path='/onboarding' element={<OnBoarding />} />
         <Route path='/callpage' element={<CallPage />} />
       </Routes>
-      
+
       <Toaster />
     </div>
   )
