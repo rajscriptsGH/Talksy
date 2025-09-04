@@ -39,27 +39,29 @@ frontend/
 
 ## Installation & Setup
 
-```bash
-Clone the repository:
+**1**.Clone the repository:
 
+```bash
 git clone <https://github.com/rajscriptsGH/Talksy/frontend.git>
 cd frontend
+```
 
-Install dependencies:
+**2**.Install dependencies:
 
+```bash
 npm install
+```
 
-Create an .env file in root:
+**3**.Create an .env file in root:
 
+```env
 VITE_API_URL=<http://localhost:3000/api>
+```
 
-Start development server:
+**4**.Start development server:
 
+```bash
 npm run dev
-
-Build for production:
-
-npm run build
 ```
 
 ## Real-Time Communication
@@ -96,16 +98,12 @@ Comming soon...
 
 ## 🤝 Contribution
 
-1.Fork the repo
+**1**.Fork the repo
 
-2.Create a feature branch (git checkout -b feature-name)
+**2**.Create a feature branch (git checkout -b feature-name)
 
-3.Commit changes (git commit -m "Added feature X")
+**3**.Commit changes (git commit -m "Added feature X")
 
-4.Push branch (git push origin feature-name)
+**4**.Push branch (git push origin feature-name)
 
-5.Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License.
+**5**.Create a Pull Request
