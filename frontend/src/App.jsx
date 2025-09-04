@@ -12,7 +12,7 @@ import toast, { Toaster } from 'react-hot-toast'
 function App() {
 
   return (
-    <div className="h-screen">
+    <div className="h-screen" data-theme="night">
 
       <Routes>
         <Route path='/' element={<HomePage />} />
