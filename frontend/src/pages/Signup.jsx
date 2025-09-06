@@ -3,6 +3,7 @@ import { FileVideoCamera } from 'lucide-react'
 import { Link } from "react-router-dom";
 import { axiosInstance } from '../lib/axios'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { signup } from '../lib/api';
 
 const Signup = () => {
     const [signupData, setSignupData] = useState({
@@ -13,24 +14,16 @@ const Signup = () => {
 
     const queryClient = useQueryClient();
 
-    const { mutate, isPending, error } = useMutation({
-        mutationFn: async () => {
-            const response = await axiosInstance.post("/auth/signup", signupData);
-            return response.data
-        },
-        onSuccess: (data) => {
-            console.log("Signup success", data);
-
+    const { mutate: signupMutation, isPending, error } = useMutation({
+        mutationFn: signup,
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["authUser"] });
-        },
-        onError: (error) => {
-            console.error("Signup failed:", err.response?.data || error.message);
         },
     })
 
     const handleSignup = (e) => {
         e.preventDefault()
-        mutate()
+        signupMutation(signupData)
     }
 
 
@@ -48,6 +41,13 @@ const Signup = () => {
                     </div>
 
                     {/* form */}
+
+                    {error && (
+                        <div className='alert alert-error mb-4'>
+                            <span>{error.response.data.message}</span>
+                        </div>
+                    )}
+
                     <div className='w-full px-5'>
                         <form onSubmit={handleSignup}>
                             <div className='mt-2 mb-5'>
@@ -106,7 +106,15 @@ const Signup = () => {
 
                             <button
                                 className='btn btn-primary mt-7 mb-2 w-full' type='submit'>
-                                {isPending ? "Signing up..." : "Create Account"}
+                                {isPending ? (
+                                    <>
+                                        <span className='loading loading-spinner loading-xs'>
+                                            Loading....
+                                        </span>
+                                    </>
+                                ) : (
+                                    "Create Account"
+                                )}
 
                             </button>
 
