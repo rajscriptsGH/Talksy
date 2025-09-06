@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { FileVideoCamera } from 'lucide-react'
-import { Link, Navigate } from 'react-router'
+import { Link } from "react-router-dom";
+import { axiosInstance } from '../lib/axios'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const Signup = () => {
     const [signupData, setSignupData] = useState({
@@ -9,10 +11,26 @@ const Signup = () => {
         password: ""
     })
 
-    
+    const queryClient = useQueryClient();
+
+    const { mutate, isPending, error } = useMutation({
+        mutationFn: async () => {
+            const response = await axiosInstance.post("/auth/signup", signupData);
+            return response.data
+        },
+        onSuccess: (data) => {
+            console.log("Signup success", data);
+
+            queryClient.invalidateQueries({ queryKey: ["authUser"] });
+        },
+        onError: (error) => {
+            console.error("Signup failed:", err.response?.data || error.message);
+        },
+    })
 
     const handleSignup = (e) => {
         e.preventDefault()
+        mutate()
     }
 
 
@@ -82,12 +100,14 @@ const Signup = () => {
                                         required
                                         className='w-full border border-purple-300 rounded-lg px-5 py-2 outline-0'
                                     />
-                                    <p className='text-[10px] text-slate-400'>Passwoed must be at least 4 characters long</p>
+                                    <p className='text-[10px] text-slate-400'>Password must be at least 4 characters long</p>
                                 </div>
                             </div>
 
                             <button
-                                className='btn btn-primary mt-7 mb-2 w-full' type='submit'>Create Account
+                                className='btn btn-primary mt-7 mb-2 w-full' type='submit'>
+                                {isPending ? "Signing up..." : "Create Account"}
+
                             </button>
 
                             <p className='text-center mt-2'>

@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router'
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import HomePage from './pages/HomePage.jsx'
 import Signup from './pages/Signup.jsx'
@@ -21,7 +21,7 @@ function App() {
     retry: false
   })
 
-  // if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <div>Loading...</div>
   // if (error) return <div>Error loading user</div>
 
   const authUser = authData?.user
@@ -29,7 +29,6 @@ function App() {
 
   return (
     <div className="h-screen" data-theme="night">
-
       <Routes>
         <Route path='/' element={authUser ? <HomePage /> : <Navigate to="/login" />} />
         <Route path='/signup' element={!authUser ? <Signup /> : <Navigate to="/" />} />
@@ -39,7 +38,6 @@ function App() {
         <Route path='/onboarding' element={authUser ? <OnBoarding /> : <Navigate to="/login" />} />
         <Route path='/callpage' element={authUser ? <CallPage /> : <Navigate to="/login" />} />
       </Routes>
-
       <Toaster />
     </div>
   )

@@ -7,19 +7,19 @@ export async function signup(req, res) {
 
     try {
         if (!fullName || !email || !password) {
-            return res.status(400), json({
+            return res.status(400).json({
                 message: "All fields are requires"
             })
         }
 
         if (password.length < 4) {
-            return res.status(400), json({
+            return res.status(400).json({
                 message: "Password length must be atleast 4 characters"
             })
         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            return res.status(400), json({
+            return res.status(400).json({
                 message: "Invalid email"
             })
         }
@@ -73,7 +73,7 @@ export async function signup(req, res) {
 
     } catch (error) {
         console.log("error in signup", error);
-        res.status(500), json({
+        res.status(500).json({
             message: "Signup server error"
         });
     }
