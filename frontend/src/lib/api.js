@@ -1,3 +1,4 @@
+import axios from "axios";
 import { axiosInstance } from "./axios";
 
 
@@ -7,6 +8,11 @@ export const signup = async (signupData) => {
 }
 
 export const getAuthUser = async () => {
-    const res = await axiosInstance.get("/auth/me")
-    return res.data
+    const response = await axiosInstance.get("/auth/me")
+    return response.data
+}
+
+export const completeOnboarding = async (userData) => {
+    const response = await axios.post('/auth/onbording', userData)
+    return response.data
 }
