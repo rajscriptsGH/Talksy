@@ -105,7 +105,7 @@ const Signup = () => {
                             </div>
 
                             <button
-                                className='btn btn-primary mt-7 mb-2 w-full' type='submit'>
+                                className='btn btn-primary mt-7 mb-2 w-full bg-gradient-to-r from-primary to-secondary hover:to-primary' type='submit'>
                                 {isPending ? (
                                     <>
                                         <span className='loading loading-spinner loading-xs'>
