@@ -10,6 +10,7 @@ import CallPage from './pages/CallPage.jsx'
 import toast, { Toaster } from 'react-hot-toast'
 import { useQuery } from '@tanstack/react-query'
 import { axiosInstance } from './lib/axios.js'
+import PageLoader from "./components/PageLoader.jsx";
 
 function App() {
   const { data: authData, isLoading, error } = useQuery({
@@ -21,10 +22,11 @@ function App() {
     retry: false
   })
 
-  if (isLoading) return <div>Loading...</div>
-  // if (error) return <div>Error loading user</div>
-
   const authUser = authData?.user
+
+  if (isLoading) return <PageLoader />
+
+
 
 
   return (
