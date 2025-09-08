@@ -165,7 +165,7 @@ export async function onboard(req, res) {
 
         const updateUser = await User.findByIdAndUpdate(userId, {
             ...req.body,
-            onBoarded: true
+            isOnboarded: true
         }, { new: true });
         if (!updateUser) {
             return res.status(400).json({

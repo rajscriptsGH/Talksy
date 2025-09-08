@@ -8,9 +8,11 @@ export const signup = async (signupData) => {
 }
 
 export const getAuthUser = async () => {
-    const response = await axiosInstance.get("/auth/me")
-    return response.data
-}
+    const res = await axiosInstance.get("/auth/me");
+    console.log("getAuthUser response:", res.data); // 👀 check this
+    return res.data;
+};
+
 
 export const completeOnboarding = async (userData) => {
     const response = await axiosInstance.post('/auth/onboarding', userData)
