@@ -5,10 +5,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { completeOnboarding } from '../lib/api';
 import { Camera, FileVideoCamera, MapPinIcon, Shuffle } from "lucide-react";
 import { LANGUAGES } from "../constant/index.js";
+import { useNavigate } from 'react-router-dom';
 
 const OnBoarding = () => {
     const { authUser } = useAuthUser()
     const queryClient = useQueryClient()
+
+    const navigate = useNavigate()
 
     const [formState, setFormState] = useState({
         fullName: authUser?.fullName || "",
@@ -24,6 +27,7 @@ const OnBoarding = () => {
         onSuccess: () => {
             toast.success("Onboarded successfully")
             queryClient.invalidateQueries(["authUser"]);
+            navigate("/")
         },
         onError: (error) => {
             toast.error(error.response.data.message)
