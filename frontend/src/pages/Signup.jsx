@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { FileVideoCamera } from 'lucide-react'
 import { Link } from "react-router-dom";
-import { axiosInstance } from '../lib/axios'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { signup } from '../lib/api';
 
