@@ -9,7 +9,7 @@ export const signup = async (signupData) => {
 
 export const getAuthUser = async () => {
     const res = await axiosInstance.get("/auth/me");
-    console.log("getAuthUser response:", res.data); // 👀 check this
+    // console.log("getAuthUser response:", res.data);
     return res.data;
 };
 
