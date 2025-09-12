@@ -51,7 +51,6 @@ const Login = () => {
                         <form onSubmit={handleLogin}>
                             <div className='mt-2 mb-5'>
                                 <h1 className='text-[30px] font-semibold text-center'>Login</h1>
-
                             </div>
 
                             <div className='space-y-5'>
