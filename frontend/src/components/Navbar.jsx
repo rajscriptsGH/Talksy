@@ -1,6 +1,6 @@
 import React from 'react'
 import useAuthUser from '../hooks/useAuthUser';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import ThemeSelector from './ThemeSelector';
 import { BellIcon, FileVideoCamera, LogOutIcon } from 'lucide-react';
@@ -11,10 +11,15 @@ const Navbar = () => {
     const location = useLocation();
     const isChatPage = location.pathname?.startsWith("/chat");
 
+    const navigate = useNavigate();
+
     const queryClient = useQueryClient();
     const { mutate: logoutMutation } = useMutation({
         mutationFn: logout,
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["authUser"] }, null);
+            navigate("/login");
+        },
     });
 
 

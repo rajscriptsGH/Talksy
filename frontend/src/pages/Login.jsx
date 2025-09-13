@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import { FileVideoCamera } from 'lucide-react'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { login } from '../lib/api';
 
@@ -11,14 +11,18 @@ const Login = () => {
         password: ""
     })
 
+    const navigate = useNavigate()
+
     const queryClient = useQueryClient();
 
     const { mutate: loginMutation, isPending, error } = useMutation({
         mutationFn: login,
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ["authUser"] });
+        onSuccess: (data) => {
+            queryClient.setQueryData(["authUser"], { user: data.user });
+            navigate("/");
         },
-    })
+    });
+
 
     const handleLogin = (e) => {
         e.preventDefault()
