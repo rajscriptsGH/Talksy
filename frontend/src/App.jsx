@@ -30,7 +30,7 @@ function App() {
         <Route
           path='/'
           element={isAuthenticated && isOnboarded ? (
-            <Layout>
+            <Layout showSidebar>
               <HomePage />
             </Layout>
           ) : (
@@ -46,7 +46,7 @@ function App() {
           element={!isAuthenticated ? <Login /> : <Navigate to={isOnboarded ? "/" : "/onboarding"} />} />
 
         <Route path='/chatpage' element={isAuthenticated ? <ChatPage /> : <Navigate to="/login" />} />
-        <Route path='/notification' element={isAuthenticated ? <Notification /> : <Navigate to="/login" />} />
+        <Route path='/notifications' element={isAuthenticated ? <Notification /> : <Navigate to="/login" />} />
         <Route path='/callpage' element={isAuthenticated ? <CallPage /> : <Navigate to="/login" />} />
         <Route
           path='/onboarding'

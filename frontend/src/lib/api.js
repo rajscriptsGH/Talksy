@@ -17,9 +17,14 @@ export const logout = async () => {
 }
 
 export const getAuthUser = async () => {
-    const res = await axiosInstance.get("/auth/me");
-    // console.log("getAuthUser response:", res.data);
-    return res.data;
+    try {
+        const res = await axiosInstance.get("/auth/me");
+        return res.data;
+    } catch (error) {
+        console.log("Error in getAuthUser", error);
+
+        return null;
+    }
 };
 
 
