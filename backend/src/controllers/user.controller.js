@@ -13,13 +13,13 @@ export async function getReccomendedUsers(req, res) {
 
         const reccomendedUsers = await User.find({
             _id: { $nin: excludeIds },
-            isOnboarded: true, // check DB field name
+            isOnboarded: true,
         });
 
         console.log("Exclude IDs:", excludeIds);
         console.log("Recommended Users:", reccomendedUsers);
 
-        res.status(200).json({ reccomendedUsers });
+        res.status(200).json(reccomendedUsers);
     } catch (error) {
         console.error("error in getReccomendedUsers", error);
         res.status(500).json({
@@ -48,7 +48,7 @@ export async function getMyFriends(req, res) {
 }
 
 
-export async function sendFriendRequest() {
+export async function sendFriendRequest(req, res) {
     try {
         const myId = req.user.id;
         const { id: recipientId } = req.params;
