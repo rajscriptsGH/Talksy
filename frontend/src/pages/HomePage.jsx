@@ -44,6 +44,9 @@ const HomePage = () => {
     // Mutation to send friend request
     const { mutate: sendRequestMutation, isLoading: isSending } = useMutation({
         mutationFn: sendFriendRequest,
+        onMutate: (recipientId) => {
+            setOutgoingRequestsIds((prev) => new Set(prev).add(recipientId));
+        },
         onSuccess: () =>
             queryClient.invalidateQueries({ queryKey: ["outgoingFriendReqs"] }),
     });
