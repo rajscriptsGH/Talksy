@@ -181,7 +181,6 @@ export const LANGUAGES = [
 ];
 
 export const LANGUAGE_TO_FLAG = {
-    nepali: "np",
     english: "gb",
     spanish: "es",
     french: "fr",

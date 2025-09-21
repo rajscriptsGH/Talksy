@@ -35,3 +35,27 @@ export const completeOnboarding = async (userData) => {
     const { data } = await axiosInstance.post("/auth/onboarding", userData);
     return data;
 };
+
+export async function getUserFriends() {
+    const response = await axiosInstance.get("/users/friends");
+    const data = response.data;
+    return Array.isArray(data) ? data : data.friends || [];
+}
+
+
+export async function getRecommendedUsers() {
+    const response = await axiosInstance.get("/users");
+    const data = response.data;
+    return Array.isArray(data) ? data : data.users || [];
+}
+
+
+export async function getOutgoingFriendReqs() {
+    const response = await axiosInstance.get("/users/outgoing-friend-requests");
+    return response.data;
+}
+
+export async function sendFriendRequest() {
+    const response = await axiosInstance.get(`/users/friend-request/${userId}`);
+    return response.data;
+}
