@@ -5,25 +5,32 @@ import User from "../models/User.js";
 export async function getReccomendedUsers(req, res) {
     try {
         const currentUserId = req.user.id;
-        const currentUser = req.user;
+
+        const currentUser = await User.findById(currentUserId).select("friends");
+        const friendIds = currentUser?.friends || [];
+
+        const excludeIds = [currentUserId, ...friendIds];
 
         const reccomendedUsers = await User.find({
-            $and: [
+            _id: { $nin: excludeIds },
+            isOnboarded: true, // check DB field name
+        });
 
-                { _id: { $ne: currentUserId } },
-                { $id: { $ne: currentUser.friends } },
-                { isOnBorded: true },
-            ]
-        })
+        console.log("Exclude IDs:", excludeIds);
+        console.log("Recommended Users:", reccomendedUsers);
+
         res.status(200).json({ reccomendedUsers });
     } catch (error) {
-        console.log("error in getReccomendedUsers", error);
+        console.error("error in getReccomendedUsers", error);
         res.status(500).json({
             success: false,
-            message: "Internal server error"
+            message: "Internal server error",
         });
     }
 }
+
+
+
 
 
 export async function getMyFriends(req, res) {
