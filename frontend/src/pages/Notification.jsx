@@ -81,7 +81,7 @@ const Notification = () => {
                             </section>
                         )}
 
-                        {/* ACCEPTED REQS NOTIFICATONS */}
+                        {/* Accept req */}
                         {acceptedRequests.length > 0 && (
                             <section className="space-y-4">
                                 <h2 className="text-xl font-semibold flex items-center gap-2">
