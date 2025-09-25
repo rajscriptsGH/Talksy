@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { LANGUAGE_TO_FLAG } from "../constant/index.js";
 
 const FriendCard = ({ friend }) => {
@@ -24,7 +24,7 @@ const FriendCard = ({ friend }) => {
                     </span>
                 </div>
 
-                <Link to={`/chat/${friend._id}`} className="btn btn-outline w-full">
+                <Link to={`/chatpage/${friend._id}`} className="btn btn-outline w-full">
                     Message
                 </Link>
             </div>
