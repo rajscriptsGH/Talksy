@@ -34,3 +34,13 @@
 .str-chat__message-input {
   border-top: 1px solid #ddd;
 }
+
+.str-chat__list .highlight-message {
+  color: #16e45a;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+  display: inline-block;
+  max-width: 80%;
+  margin-bottom: 8px;
+}
