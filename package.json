@@ -1,0 +1,20 @@
+{
+  "name": "talksy",
+  "version": "1.0.0",
+  "description": "Talksy is a real-time chat and video app for fast and simple communication.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajscriptsGH/Talksy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajscriptsGH/Talksy/issues"
+  },
+  "homepage": "https://github.com/rajscriptsGH/Talksy#readme"
+}
