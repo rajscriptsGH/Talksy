@@ -4,7 +4,8 @@
   "description": "Talksy is a real-time chat and video app for fast and simple communication.",
   "main": "index.js",
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend "
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/rajscriptsGH/Talksy/issues"
   },
-  "homepage": "https://github.com/rajscriptsGH/Talksy#readme"
+  "homepage": "https://github.com/rajscriptsGH/Talksy#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
