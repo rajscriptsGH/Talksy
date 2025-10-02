@@ -2,8 +2,11 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getUserFriends } from "../lib/api";
 import NoFriendsFound from "../components/NoFriendsFound";
+import { useNavigate } from "react-router-dom";
 
 const FriendsPage = () => {
+    const navigate = useNavigate();
+
     const { data: friends, isLoading, isError } = useQuery({
         queryKey: ["friends"],
         queryFn: getUserFriends,
@@ -32,7 +35,10 @@ const FriendsPage = () => {
                                 />
                                 <span className="font-medium">{friend.fullName}</span>
                             </div>
-                            <button className="btn btn-sm btn-primary">
+                            <button
+                                className="btn btn-sm btn-primary"
+                                onClick={() => navigate(`/chatpage/${friend._id}`)}
+                            >
                                 Chat
                             </button>
                         </div>
