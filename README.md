@@ -2,6 +2,10 @@
 
 Talksy is a real-time chat and video app for fast and simple communication.
 
+## Live
+
+<https://talksy-jwl9.onrender.com>
+
 ## Features
 
 - 💬 Instant messaging  
