@@ -52,7 +52,7 @@ function App() {
               <ChatPage />
             </Layout>
           ) : (
-            <Navigate to={isAuthenticated ? "/login" : "/onboarding"} />
+            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
           )} />
 
         <Route path='/notifications'
@@ -61,10 +61,15 @@ function App() {
               <Notification />
             </Layout>
           ) : (
-            <Navigate to={isAuthenticated ? "/login" : "/onboarding"} />
+            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
           )} />
 
-        <Route path='/callpage' element={isAuthenticated ? <CallPage /> : <Navigate to="/login" />} />
+        <Route path='/callpage/:id'
+          element={isAuthenticated && isOnboarded ? (
+            <CallPage />
+          ) : (
+            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+          )} />
 
         <Route
           path='/onboarding'
