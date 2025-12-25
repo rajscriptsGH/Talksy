@@ -8,10 +8,10 @@ Talksy is a real-time chat and video app for fast and simple communication.
 
 ## Features
 
-- 💬 Instant messaging  
-- 📹 Video calls  
-- ⚡ Real-time updates  
-- 🎨 Clean and modern UI  
+-  Instant messaging  
+-  Video calls  
+-  Real-time updates  
+-  Clean and modern UI  
 
 ## Tech Stack
 
